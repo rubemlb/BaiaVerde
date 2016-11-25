@@ -1,7 +1,31 @@
 <?php
+ini_set('max_execution_time', 300); // 5 minutes
+    $captcha;
+    if(isset($_POST['g-recaptcha-response'])){
+      $captcha=$_POST['g-recaptcha-response'];
+    }
+    if(!$captcha){
+      echo "<script type='text/javascript'>
+                alert('Por favor confirme o Captcha!');
+                location='booking.html';
+            </script>";
+      exit;
+    }
+    $secretKey = "6LdN6QwUAAAAAKzUZzE7Drg37rKZ_5vDSt5YE0qY";
+    $ip = $_SERVER['REMOTE_ADDR'];
+    $response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$secretKey."&response=".$captcha."&remoteip=".$ip);
+    $responseKeys = json_decode($response,true);
+    if(intval($responseKeys["success"]) !== 1) {
+      echo "<script type='text/javascript'>
+                alert('Captcha invalido!');
+                location='booking.html';
+            </script>";
+      exit;
+    } else {
+        if((include "/data/customers/projetos.prime.cv/httpdocs/bookingodoo_teste/reservaodoo.php") == 0){
 
-$expected = ['data_chegada', 'data_partida', 'quartos', 'adultos','num_cama_ext','nome','apelido','email','num_doc','telefone','endereco','pais_origem','nacionalidade','mot_viagem','info'];
-$required = ['data_chegada', 'data_partida', 'quartos', 'adultos','nome','apelido','email','num_doc','telefone','endereco'];
+$expected = ['arrival_date', 'departure_date', 'num_rooms','num_adults','num_children','room_type','name','surname','email','doc_num', 'telephone', 'address','origin_country','nationality','travel_motive','info','number_extra_bed','site'];
+$required = ['arrival_date', 'departure_date', 'num_rooms','num_adults','name','surname','email','doc_num', 'telephone', 'address'];
 
 // check $_POST array
 foreach ($_POST as $key => $value) {
@@ -145,4 +169,5 @@ EOT;
     } catch (Exception $e) {
         echo $e->getMessage();
     }
+}
 }

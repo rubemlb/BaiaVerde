@@ -146,52 +146,61 @@
           <section class="no_padding dark_section booking-form">
             <div class="row">
               <div class="col-md-10 col-md-offset-1">
-                <form class="booking_form" action="booking.html">
+                <form class="booking_form" action="booking.html" id="theform" name="theform" method="post">
                   <div class="col-md-10 col-md-offset-1 text-center">
+
+
+                    <!-- DATA CHECK IN --> 
                     <div class="col-md-3 small_screen_margin_top">
                       <div class="form-group">
                         <label>Data check in</label><i class="arrow-down"></i>
-                        <input type="text" placeholder="" id="date_check_in">
+                        <input type="text" placeholder="Check-in" id="arrival_date" name="arrival_date" style="background-color: white">
                       </div>
                     </div>
+
+                    <!-- DATA CHECK OUT --> 
                     <div class="col-md-3 small_screen_margin_top">
                       <div class="form-group">
                         <label>Data check out</label><i class="arrow-down"></i>
-                        <input type="text" placeholder="" id="date_check_out">
+                        <input type="text" placeholder="Check-out" id="departure_date" name="departure_date" style="background-color: white">
                       </div>
-                    </div>
-					<div class="col-md-3 small_screen_margin_top">
+                    </div> 
+
+          					<div class="col-md-3 small_screen_margin_top">
                       <div class="form-group">
                         <label>No. de Adultos</label><i class="arrow-down"></i>
-						<select class="form-control select_2" id="no_adultos" name="no_adultos" required="required">
-							  <option>1</option>
-							  <option>2</option>
-							  <option>3</option>
-							  <option>4</option>
-							  <option>5</option>
-						</select>
+                					<select class="form-control select_2" id="no_adults" name="no_adults" required="required">
+                              <option>0</option>
+                						  <option>1</option>
+                						  <option>2</option>
+                						  <option>3</option>
+                						  <option>4</option>
+                						  <option>5</option>
+                					</select>
                       </div>
                     </div>
-					<div class="col-md-3 small_screen_margin_top">
+
+          					<div class="col-md-3 small_screen_margin_top">
                       <div class="form-group">
                         <label>No. de quartoss</label><i class="arrow-down"></i>
-						<select class="form-control" id="no_adultos" name="no_adultos" required="required">
-							  <option>1</option>
-							  <option>2</option>
-							  <option>3</option>
-							  <option>4</option>
-							  <option>5</option>
-						</select>
+          						  <select class="form-control" id="no_rooms" name="no_rooms" required="required">
+                          <option>0</option>
+          							  <option>1</option>
+          							  <option>2</option>
+          							  <option>3</option>
+          						  </select>
                       </div>
                     </div>
+
                   </div>
+
                   <div class="col-md-12 small_screen_margin_top text-center">
-					  <button type="submit">RESERVAR</button>
-				  </div>
-                </form>
-              </div>
+          					 <button type="submit" onclick="store()">RESERVAR</button>
+          				</div>
+              </form>
             </div>
-          </section>
+          </div>
+        </section>
 
         </div>
           
@@ -330,7 +339,7 @@
 				</div>
 				</div>
 			</div><!-- /.carousel -->
-          </div>
+    </div>
         </section>
         
         <section class="white_section">
@@ -467,10 +476,21 @@
   
   <!-- end google analytics-->
   
+  <script>
+    /* Send sotres the check-in and Check-out values to be use for autocompleting the reservation form on another page*/
+    function store(){
+    if (typeof(Storage) !== "undefined") {
+      sessionStorage.setItem("clientCki", document.theform.arrival_date.value);
+      sessionStorage.setItem("clientCko", document.theform.departure_date.value);
+      sessionStorage.setItem("clientAdlt", document.theform.no_adults.value);
+      sessionStorage.setItem("clientRoom", document.theform.no_rooms.value);
+    } else {
+      alert("Sorry! No Web Storage support..")
+    }
+    };
+  </script>
   
   </body>
 
-
-    
 <!-- Mirrored from andrewch.eu/XENIA/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 14 Apr 2016 12:00:02 GMT -->
 </html>
