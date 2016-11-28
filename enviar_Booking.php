@@ -23,7 +23,7 @@ ini_set('max_execution_time', 300); // 5 minutes
             </script>";
       exit;
     } else {
-        if((include "/data/customers/projetos.prime.cv/httpdocs/bookingodoo/reservaodoo.php") == 0){
+        if((include "/data/customers/projetos.prime.cv/httpdocs/bookingodoo_teste/reservaodoo.php") == 0){
         
             $expected = ['name', 'surname', 'telephone', 'email', 'address', 'doc_num', 'origin_country', 'nationality', 'travel_motive', 'arrival_date', 'departure_date', 'num_rooms', 'number_extra_bed', 'num_adults', 'num_children', 'info', 'room_type', 'site'];
             $required = ['arrival_date', 'departure_date', 'num_rooms','num_adults','name','surname','email','doc_num', 'telephone', 'address'];
@@ -58,7 +58,7 @@ ini_set('max_execution_time', 300); // 5 minutes
 
                 // set up replacements for decorator plugin
                 $replacements = [
-                    'baiaverde@cvtelecom.cv' =>
+                    'rubem.barros@primeconsulting.org' =>
                         ['#subject#' => 'Reservations - Hotel Baía Verde',
                             '#greeting#' => "You received a reservation request from $nome. See details below:"],
                     $email =>
