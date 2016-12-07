@@ -133,7 +133,211 @@ EOT;
                                 <td style='text-align:center'><img src='$image_ilha' style='height: 50px; width: 180px'></td>
                             </tr>
                             <footer style='text-align:center;padding-bottom:1em;'>eTourism Project by Prime Consulting &middot; <a>Termos</a> &middot; <a>Privacidade</a></footer>";
+<?php
+ini_set('max_execution_time', 300); // 5 minutes
 
+    $captcha;
+    if(isset($_POST['g-recaptcha-response'])){
+      $captcha=$_POST['g-recaptcha-response'];
+    }
+    if(!$captcha){
+      echo "<script type='text/javascript'>
+                alert('Por favor confirme o Captcha!');
+                location='booking.html';
+            </script>";
+      exit;
+    }
+    $secretKey = "6LdshwsUAAAAAEVQibGyIQOmWmBB43vwCZPvjWJE";
+    $ip = $_SERVER['REMOTE_ADDR'];
+    $response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$secretKey."&response=".$captcha."&remoteip=".$ip);
+    $responseKeys = json_decode($response,true);
+    if(intval($responseKeys["success"]) !== 1) {
+      echo "<script type='text/javascript'>
+                alert('Captcha invalido!');
+                location='booking.html';
+            </script>";
+      exit;
+    } else {
+        if((include "/data/customers/projetos.prime.cv/httpdocs/bookingodoo/reservaodoo.php") == 0){
+        
+            $expected = ['name', 'surname', 'telephone', 'email', 'address', 'doc_num', 'origin_country', 'nationality', 'travel_motive', 'arrival_date', 'departure_date', 'num_rooms', 'number_extra_bed', 'num_adults', 'num_children', 'info', 'room_type', 'site'];
+            $required = ['arrival_date', 'departure_date', 'num_rooms','num_adults','name','surname','email','doc_num', 'telephone', 'address'];
+
+            // check $_POST array
+            foreach ($_POST as $key => $value) {
+                if (in_array($key, $expected)) {
+                    if (!is_array($value)) {
+                        $value = trim($value);
+                    }
+                    if (empty($value) && in_array($key, $required)) {
+                        $$key = '';
+                        $missing[] = $key;
+                    } else {
+                        $$key = $value;
+                    }
+                }
+            }
+
+            // check email address
+            if (!in_array($email, $missing)) {
+                $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+                if (!$email) {
+                    $errors['email'] = 'Please use a valid email address';
+                }
+            }
+
+
+            // process only if there are no errors or missing fields
+            if (!$errors && !$missing) {
+                require_once 'config.php';
+
+                // set up replacements for decorator plugin
+                $replacements = [
+                    'aparthotel@sapo.cv' =>
+                        ['#subject#' => 'Reservations - Aparthotel Avenida',
+                            '#greeting#' => "You received a reservation request from $nome $apelido. See details below:"],
+                    $email =>
+                        ['#subject#' => 'Aparthotel Avenida Reservation Request',
+                            '#greeting#' => "Thanks $nome, your booking request was received!"]
+                ];
+
+                try {
+                    // create a transport
+                    $transport = Swift_SmtpTransport::newInstance($smtp_server, 465, 'ssl')
+                        ->setUsername($username)
+                        ->setPassword($password);
+                    $mailer = Swift_Mailer::newInstance($transport);
+
+                    // register the decorator and replacements
+                    $decorator = new Swift_Plugins_DecoratorPlugin($replacements);
+                    $mailer->registerPlugin($decorator);
+
+                    // initialize the message
+                   $message = Swift_Message::newInstance()
+                       ->setSubject('#subject#')
+                       ->setReplyTo(array($email,$username))
+                       ->setFrom($email);
+
+                    $image_ilha = $message->embed(Swift_Image::fromPath('img/saovicente.png'));
+                    $image_logo = $message->embed(Swift_Image::fromPath('img/logo.png'));
+                    $image_hotel = $message->embed(Swift_Image::fromPath('img/galeria/galeria_8.jpg'));
+                    $image_local = $message->embed(Swift_Image::fromPath('img/local.png'));
+
+                    // create the first part of the HTML output
+                    $html = <<<EOT
+<html lang="en">
+
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <title>Aparthotel Avenida</title>
+    </head>
+
+    <body bgcolor="#EBEBEB" link="#B64926" vlink="#FFB03B">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#EBEBEB">
+            <tr>
+                <td>
+                    <table width="600" align="center" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+                        <tr>
+                            <td style="text-align:center; padding:2em;  background-color: grey"><img src="$image_logo">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-top: 0.5em">
+                                <h1 style="font-family: 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif; color: #0E618C; text-align: center">Reservation Request - Aparthotel Avenida</h1>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left:5em;padding-right:5em;">
+                                <p>Aparthotel Avenida:Avenida 5 de Julho, 120, Mindelo, São Vicente, CABO VERDE</p>
+                                <p><b>Telephone:</b> (+238) 232 23 33</p>
+                                <p><b>Telephone:</b> (+238) 232 34 35</p>
+                                <p><b>Mobile:</b> (+238) 982 11 78</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center; padding:2em;">
+                                <img src="$image_local" style="width:200px; height:100px;">
+                                <img src="$image_hotel" style="width:200px; height:100px;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-top: 0.5em">
+                                <h3 style="font-family: 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif; color: #0E618C;padding-left:4.3em;padding-right:5em;">Request Details</h3>
+                                <ul style="list-style:none;">
+EOT;
+
+                    // initialize variable for plain text version
+                    $text = '';
+
+                    // add each form element to the HTML and plain text content
+                    foreach ($expected as $item) {
+                        if (isset($$item)) {
+                            $value = $$item;
+                            $label = ucwords(str_replace('_', ' ', $item));
+                            $html .= "<li>> $label: ";
+                            if (is_array($value)) {
+                                $value = implode(', ', $value);
+                            }
+                            $html .= "$value</li>";
+                            $text .= "$label: $value\r\n";
+                        }
+                    }
+
+                    // complete the HTML content
+                    $html .= '</ul></td></tr>';
+                    $html .="<tr>
+                                <td style='text-align:center'><img src='$image_ilha' style='height: 50px; width: 180px'></td>
+                            </tr>
+                            <footer style='text-align:center;padding-bottom:1em;'>eTourism Project by Prime Consulting &middot; <a>Termos</a> &middot; <a>Privacidade</a></footer>";
+
+                    $html .= '</table></td></tr></table></body></html>';
+
+                    // set the HTML body and add the plain text version
+                    $message->setBody($html, 'text/html')
+                        ->addPart($text, 'text/plain');
+
+                    // initialize variables to track the emails
+                    $sent = 0;
+                    $failures = [];
+
+                    // send the messages
+                    foreach ($replacements as $recipient => $values) {
+                        $message->setTo($recipient);
+                        $sent += $mailer->send($message, $failures);
+                    }
+
+                    // if the message have been sent, redirect to relevant page
+                    if ($sent == 2) {
+                        header('Location: booking_success.html');
+                        exit;
+                    }
+
+                    // handle failures
+                    $num_failed = count($failures);
+                    if ($num_failed == 2) {
+                        $f = 'both';
+                    } elseif (in_array($email, $failures)) {
+                        $f = 'email';
+                    } else {
+                        $f = 'reg';
+                    }
+
+                    // IMPORTANT: log an error before redirecting
+
+                    header("Location: booking.html");
+                    exit;
+                } catch (Exception $e) {
+                    echo $e->getMessage();
+                }
+            }
+        }else{
+            echo "<script type='text/javascript'>
+                       alert('A sua reserva não pude ser feita!');
+                       location='index.html';
+                  </script>";
+        }
+    }
+?>
                     $html .= '</table></td></tr></table></body></html>';
 
                     // set the HTML body and add the plain text version
