@@ -1,5 +1,5 @@
 <?php
-ini_set('max_execution_time', 300); // 5 minutes
+/*ini_set('max_execution_time', 300); // 5 minutes*/
 
     $captcha;
     if(isset($_POST['g-recaptcha-response'])){
@@ -151,8 +151,13 @@ EOT;
 
                     // if the message have been sent, redirect to relevant page
                     if ($sent == 2) {
-                        header('Location: booking_sucess.html');
+                        /*header('Location: booking_sucess.html');*/
+                        echo "<script type='text/javascript'>
+                               alert('O seu pedido de reserva foi efectuado com sucesso!');
+                               location='booking_sucess.html';
+                          </script>";
                         exit;
+
                     }
 
                     // handle failures
