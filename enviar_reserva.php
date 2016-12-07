@@ -128,11 +128,9 @@ EOT;
                     }
 
                     // complete the HTML content
-                     $html .= '</ul></td></tr>';
-                    $html .="<tr>
-                                <td style='text-align:center'><img src='$image_ilha' style='height: 50px; width: 180px'></td>
-                            </tr>
-                            <footer style='text-align:center;padding-bottom:1em;'>eTourism Project by Prime Consulting &middot; <a>Termos</a> &middot; <a>Privacidade</a></footer>";
+                    $html .= '</ul></td></tr>';
+                    $html .="<tr><td style='text-align:center'><img src='$image_ilha'></td></tr>";
+                    $html .= '</table></td></tr></table></body></html>';
 <?php
 ini_set('max_execution_time', 300); // 5 minutes
 
@@ -193,12 +191,12 @@ ini_set('max_execution_time', 300); // 5 minutes
 
                 // set up replacements for decorator plugin
                 $replacements = [
-                    'aparthotel@sapo.cv' =>
-                        ['#subject#' => 'Reservations - Aparthotel Avenida',
-                            '#greeting#' => "You received a reservation request from $nome $apelido. See details below:"],
+                    'baiaverde@cvtelecom.cv' =>
+                        ['#subject#' => 'Reservations - Hotel Baía Verde',
+                            '#greeting#' => "You received a reservation request from $nome. See details below:"],
                     $email =>
-                        ['#subject#' => 'Aparthotel Avenida Reservation Request',
-                            '#greeting#' => "Thanks $nome, your booking request was received!"]
+                        ['#subject#' => 'Reservations - Hotel Baía Verde',
+                            '#greeting#' => "You received a reservation request from $nome. See details below:"]
                 ];
 
                 try {
