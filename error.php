@@ -41,13 +41,13 @@
     <!-- ANIMATE.CSS LIBRARY-->
     <link rel="stylesheet" href="assets/css/libs/animate.min.css" type="text/css" media="all">
     <!-- ICON WEB FONTS-->
-    <!-- HEADER SCRIPTS	-->
+    <!-- HEADER SCRIPTS -->
     <script type="text/javascript" src="assets/js/libs/modernizr.custom.48287.js"></script>
     <!-- MAIN STYLESHEETS-->
     <link rel="stylesheet" href="assets/css/theme_custom_bootstrap.min.css" type="text/css" media="all">
     <link rel="stylesheet" href="assets/css/style.css" type="text/css" media="all">
-	
-	<script>
+    
+    <script>
     function googleTranslateElementInit() {
       new google.translate.TranslateElement({
         pageLanguage: 'pt',
@@ -55,7 +55,7 @@
       }, 'google_translate_element');
     }
     </script>
-	
+    
   </head>
   <body style="">
     <div id="page_wrapper">
@@ -86,26 +86,19 @@
           <div style="background-image: url('img/capas2.jpg')" class="full_width_photo transparent_film">
             <div class="container">
               <div class="caption">
-                <h1>Enviado</h1><span>Mensagem enviada.</span>
+                <h1>Erro no processo</h1>
               </div>
             </div>
           </div>
        </div>
-      <!-- END========================= HEAD PANEL ==========================	 -->
+      <!-- END========================= HEAD PANEL ==========================    -->
       <div class="main">
         <section class="light_section">
           <div class="container">
             <div class="col-md-12 text-center">
               <div class="section_header overlay"><span></span>
                 <h1>HOTEL BAÍA VERDE</h1>
-                <p>O SEU PEDIDO DE RESERVA FOI ENVIADO</p><img src="assets/images/decoration-1.png" alt="Image">
-              </div>
-            </div>
-            <div class="col-md-10 col-md-offset-1 text-center margin_bottom">
-              <div class="text_block">
-                <h3>MUITO OBRIGADO PELA PREFERÊNCIA</h3>
-                <p class="text-justify">O seu pedido de reserva foi enviado com sucesso!</p>
-				<p class="text-justify">Irá receber uma resposta pelo email indicado assim que o pedido for processado</p>
+                <p>Desculpe, houve um problema!!!</p><img src="assets/images/decoration-1.png" alt="Image">
               </div>
             </div>
           </div>

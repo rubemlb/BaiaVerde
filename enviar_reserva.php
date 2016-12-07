@@ -151,7 +151,7 @@ EOT;
 
                     // if the message have been sent, redirect to relevant page
                     if ($sent == 2) {
-                        header('Location: booking_success.html');
+                        header('Location: booking_sucess.html');
                         exit;
                     }
 
@@ -167,7 +167,7 @@ EOT;
 
                     // IMPORTANT: log an error before redirecting
 
-                    header("Location: booking.html");
+                    header("Location: error.php?f=$f");
                     exit;
                 } catch (Exception $e) {
                     echo $e->getMessage();
