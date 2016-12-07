@@ -23,7 +23,7 @@ ini_set('max_execution_time', 300); // 5 minutes
             </script>";
       exit;
     } else {
-        if((include "/data/customers/projetos.prime.cv/httpdocs/bookingodoo_teste/reservaodoo.php") == 0){
+        if((include "/data/customers/projetos.prime.cv/httpdocs/bookingodoo/reservaodoo.php") == 0){
         
             $expected = ['name', 'surname', 'telephone', 'email', 'address', 'doc_num', 'origin_country', 'nationality', 'travel_motive', 'arrival_date', 'departure_date', 'num_rooms', 'number_extra_bed', 'num_adults', 'num_children', 'info', 'room_type', 'site'];
             $required = ['arrival_date', 'departure_date', 'num_rooms','num_adults','name','surname','email','doc_num', 'telephone', 'address'];
@@ -65,7 +65,6 @@ ini_set('max_execution_time', 300); // 5 minutes
                         ['#subject#' => 'Reservations - Hotel Baía Verde',
                             '#greeting#' => "You received a reservation request from $nome. See details below:"]
                ];
-
                 try {
                     // create a transport
                     $transport = Swift_SmtpTransport::newInstance($smtp_server, 465, 'ssl')
@@ -85,6 +84,7 @@ ini_set('max_execution_time', 300); // 5 minutes
 
                     $image_ilha = $message->embed(Swift_Image::fromPath('img/SantiagoLogo.png'));
                     $image_logo = $message->embed(Swift_Image::fromPath('img/logo_email.png'));
+
                     // create the first part of the HTML output
                     $html = <<<EOT
 <html lang="en">
@@ -128,7 +128,7 @@ EOT;
                     }
 
                     // complete the HTML content
-                    $html .= '</ul></td></tr>';
+                     $html .= '</ul></td></tr>';
                     $html .="<tr>
                                 <td style='text-align:center'><img src='$image_ilha' style='height: 50px; width: 180px'></td>
                             </tr>
@@ -180,6 +180,5 @@ EOT;
                        location='index.html';
                   </script>";
         }
-    }
     }
 ?>
