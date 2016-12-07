@@ -12,7 +12,7 @@ ini_set('max_execution_time', 300); // 5 minutes
             </script>";
       exit;
     }
-    $secretKey = "6LdshwsUAAAAAEVQibGyIQOmWmBB43vwCZPvjWJE";
+    $secretKey = "6LdN6QwUAAAAAKzUZzE7Drg37rKZ_5vDSt5YE0qY";
     $ip = $_SERVER['REMOTE_ADDR'];
     $response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$secretKey."&response=".$captcha."&remoteip=".$ip);
     $responseKeys = json_decode($response,true);
