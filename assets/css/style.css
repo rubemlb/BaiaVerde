@@ -62,7 +62,7 @@ A customized "theme_custom_bootstrap.css" is also loaded by the theme in a preco
 |    __/       |    ___| |   | |       |   -   |      <       |
 |___|  |_______|_______| |___| |___|___|_______|___|__|___|___|
 
-P L E T H O R A T H E M E S . C O M 				   (c) 2015
+P L E T H O R A T H E M E S . C O M            (c) 2015
                         
 Theme Name: Medicus
 THEME STYLES v.1.0.0
@@ -72,8 +72,8 @@ THEME STYLES v.1.0.0
 1. =THEME MIXINS GENERAL HELPER STYLES & CLASSES
 =============================================================== 
 */
-.shade{
 
+.shade{
 background: rgba(226,226,226,1);
 background: -moz-linear-gradient(left, rgba(226,226,226,1) 0%, rgba(219,219,219,0.55) 50%, rgba(209,209,209,0.54) 51%, rgba(254,254,254,0.1) 100%);
 background: -webkit-gradient(left top, right top, color-stop(0%, rgba(226,226,226,1)), color-stop(50%, rgba(219,219,219,0.55)), color-stop(51%, rgba(209,209,209,0.54)), color-stop(100%, rgba(254,254,254,0.1)));
@@ -82,8 +82,8 @@ background: -o-linear-gradient(left, rgba(226,226,226,1) 0%, rgba(219,219,219,0.
 background: -ms-linear-gradient(left, rgba(226,226,226,1) 0%, rgba(219,219,219,0.55) 50%, rgba(209,209,209,0.54) 51%, rgba(254,254,254,0.1) 100%);
 background: linear-gradient(to right, rgba(226,226,226,1) 0%, rgba(219,219,219,0.55) 50%, rgba(209,209,209,0.54) 51%, rgba(254,254,254,0.1) 100%);
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe', GradientType=1 );border-radius: 124px 124px 124px 124px;
--moz-border-radius: 70px 124px 124px 124px;
--webkit-border-radius: 70px 124px 124px 124px;
+-moz-border-radius: 124px 124px 124px 124px;
+-webkit-border-radius: 124px 124px 124px 124px;
 border: 0px solid #000000;
 }
 
@@ -1775,24 +1775,9 @@ THE LOGO
 
 -------------------------------------------------------------- 
 */
-/* ilha */
-.ilha{
-     max-height: 40px;
-}
-
-.ilhaxs{  
-       width: auto;
-  max-height: 25px;
-  vertical-align: top;
-     margin: 29px 0;
-    margin-left: 20px;
-      display: inline-block;
-}
-
 .logo {
-    margin: 24px 0;
-    margin-left: 45px;
-      display: inline-block;
+  margin: 24px 0;
+  display: inline-block;
 }
 .logo a.brand {
   display: block;
@@ -1803,7 +1788,7 @@ THE LOGO
 }
 .logo a.brand img {
   width: auto;
-  max-height: 30px;
+  max-height: 50px;
   vertical-align: top;
 }
 .logo a.brand span {
@@ -2035,8 +2020,8 @@ NAVIGATION AND TOOLS ON THE HEADER
   transition: all 300ms ease-in-out;
   -webkit-overflow-scrolling: touch;
   /*&:hover, &:active, &.active {
-				border-bottom: solid 3px @brand-primary;
-			}*/
+        border-bottom: solid 3px @brand-primary;
+      }*/
 }
 .header .underline nav.primary_nav > ul > li.active > a {
   border-bottom: solid 3px #6fb586;
@@ -2605,12 +2590,12 @@ THE SECONDARY NAV WIDGETIZED AREA
   font-weight: 600;
   margin-top: 10px;
   /* &:after {
-			border-bottom : 3px solid @brand-primary;
-			content       : "";
-			display       : block;
-			margin    : 10px auto 0 auto;
-			width: 10%;
-		} */
+      border-bottom : 3px solid @brand-primary;
+      content       : "";
+      display       : block;
+      margin    : 10px auto 0 auto;
+      width: 10%;
+    } */
 }
 .caption.caption_elegant .inner .t3 {
   font-size: 14px;
@@ -3041,7 +3026,7 @@ section[class*="_section"] div[class*="_section"] .secondary_section a:active {
 div[class*="_section"] .secondary_section a i,
 section[class*="_section"] .secondary_section a i,
 section[class*="_section"] div[class*="_section"] .secondary_section a i {
-  color: black;
+  color: #ffffff;
 }
 /*** DARK SECTION ***/
 .dark_section,
@@ -4052,8 +4037,8 @@ table.timetable_big tbody td:first-child {
   font-size: 23px;
   font-weight: 400;
   /* &:first-letter {
-			font-size: 14px;
-		} */
+      font-size: 14px;
+    } */
 }
 .pricing_plan .the_price small {
   font-size: 14px;
@@ -5074,7 +5059,7 @@ form.booking_form input[type="text"] {
   font-weight: 200;
   opacity: 1;
   text-align: center;
-  background-color: white;
+  background-color: #20202d;
   line-height: 35px;
   cursor: pointer;
   padding: 0px 0px 0px 0px ;
@@ -5089,10 +5074,10 @@ form.booking_form input[type="text"].tiny_input {
 }
 form.booking_form input[type="text"]:focus {
   outline: 0px;
-  background-color: white;
+  background-color: #20202d;
 }
 form.booking_form input[type="text"]:hover {
-  background-color: white;
+  background-color: #242433;
 }
 form.booking_form i.arrow-down:after {
   content: '\2193';
@@ -5110,8 +5095,8 @@ form.booking_form select {
   cursor: pointer;
   padding: 0px 0px 0px 5px ;
   line-height: 35px;
-  background-color: white;
-  color: black;
+  background-color: #20202d;
+  color: #fdfdfd;
   opacity: 1;
   height: auto;
   text-align: center;
@@ -5137,7 +5122,7 @@ form.booking_form select:focus {
   outline: 0px;
 }
 form.booking_form select:hover {
-  background-color:white;
+  background-color: #242433;
 }
 @media (max-width: 991px) {
   form.booking_form select {
@@ -5894,7 +5879,7 @@ form.booking_form_small button[type="submit"].filled {
 .bootstrap-datetimepicker-widget table td.day {
   height: 20px;
   line-height: 20px;
-  width: 20px;
+  width: 90px;
   color: #171720;
 }
 .bootstrap-datetimepicker-widget table td.day:hover,
@@ -5934,7 +5919,7 @@ form.booking_form_small button[type="submit"].filled {
 .bootstrap-datetimepicker-widget table td.disabled,
 .bootstrap-datetimepicker-widget table td.disabled:hover {
   background: none;
-  color: #777777;
+  color: #DCDCDC;
   cursor: not-allowed;
 }
 .bootstrap-datetimepicker-widget table td span {
@@ -6067,7 +6052,7 @@ Text block
 .text_block div i {
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 50%;
-  padding: 5px;
+  padding: 10px;
   font-size: 16px;
   margin-right: 10px;
   -webkit-transition: all 0.2s ease-in-out;
@@ -6724,13 +6709,13 @@ article.post figure a {
   background-size: cover;
 }
 /* .post-grid.border-right {
-	padding-right: 30px;
-	border-right: 1px solid fade(@brand-secondary, 10%);
+  padding-right: 30px;
+  border-right: 1px solid fade(@brand-secondary, 10%);
 }
 
 .post-grid.border-left {
-	padding-left: 24px;
-	border-left: 1px solid fade(@brand-secondary, 20%);
+  padding-left: 24px;
+  border-left: 1px solid fade(@brand-secondary, 20%);
 }
  */
 .post-grid.classic article.post,
@@ -6842,7 +6827,7 @@ article.post figure a {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  /* 	padding-bottom: 48px;
+  /*  padding-bottom: 48px;
 border-bottom: 1px solid fade(#ccc,20%); */
 }
 .widget:after {
@@ -9348,30 +9333,3 @@ a.symbol:before {
 }
 
 
-a.symbol:before {
-  content: attr(title);
-  margin-right: 0.3em;
-  font-size: 130%;
-  -ms-font-feature-settings: "liga" 1;
-}
-
-.flaticon:before{
-    margin:0;
-}
-.room_bg_light.full_width_room {
-    padding: 0 24px 0 24px;
-}
-.room_bg_light img {
-    margin-top: 0;
-}
-.room_bg_light.full_width_room {
-    padding: 0 15px 0 15px;
-}
-
-.content {
-    position: absolute;
-    top: 50%;
-    left: 25%;
-    width: 50%;
-    text-align: center;
-}

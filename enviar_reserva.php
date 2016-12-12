@@ -181,7 +181,7 @@ EOT;
         }else{
             echo "<script type='text/javascript'>
                        alert('A sua reserva não pude ser feita!');
-                       location='index.html';
+                       location='error.php';
                   </script>";
         }
     }
